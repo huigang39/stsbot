@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+// 摄像头
+#include <QCameraImageCapture>
+#include <QCamera>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -18,7 +21,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_guidButton_clicked();
+
+    void on_view_clicked();
+
+    void on_view_2_clicked();
+
 private:
     Ui::MainWindow *ui;
+    // 创建两个摄像头对象
+    QCamera *ca;
+    QCameraImageCapture *capture;
 };
 #endif // MAINWINDOW_H
