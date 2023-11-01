@@ -12,6 +12,7 @@ set(CMAKE_AUTORCC ON)       # RCC能被自动执行
 set(CMAKE_CXX_STANDARD 11)  #设置编译器需要满足的C++语言标准， 设置为 C++ 11
 set(CMAKE_CXX_STANDARD_REQUIRED ON)  #要求编译器满足 C++标准
 
+find_package(ament_cmake REQUIRED)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)       #查找Qt6或Qt5，导入Widgets模块
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia MultimediaWidgets REQUIRED)  #查找Qt6，导入Widgets模块
 
@@ -52,3 +53,5 @@ set_target_properties(stsbot_qt PROPERTIES
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(stsbot_qt)     #结束生成可执行文件的过程
 endif()
+
+ament_package()
