@@ -6,6 +6,12 @@
 wget http://fishros.com/install -O fishros && . fishros
 ```
 
+## 安装 cartographer
+
+```shell
+sudo apt install ros-$ROS_DISTRO-cartographer*
+```
+
 ## 克隆代码
 克隆本项目及其子模块到本地：
 
