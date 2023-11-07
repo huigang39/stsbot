@@ -6,7 +6,7 @@
 wget http://fishros.com/install -O fishros && . fishros
 ```
 
-## 安装 cartographer
+## 安装 Cartographer
 
 ```shell
 sudo apt install ros-$ROS_DISTRO-cartographer*
