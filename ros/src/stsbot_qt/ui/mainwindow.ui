@@ -139,7 +139,7 @@ border-image: url(:/star.png);</string>
    <widget class="QPushButton" name="forwardButton">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>340</x>
       <y>740</y>
       <width>231</width>
       <height>81</height>
@@ -147,17 +147,17 @@ border-image: url(:/star.png);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 75 22pt &quot;Microsoft YaHei UI&quot;;
-background-color: rgb(255, 255, 127);</string>
+background-color: rgb(0, 170, 0);</string>
     </property>
     <property name="text">
-     <string>前进</string>
+     <string>电机1开</string>
     </property>
    </widget>
    <widget class="QPushButton" name="leftButton">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>840</y>
+      <x>340</x>
+      <y>880</y>
       <width>231</width>
       <height>81</height>
      </rect>
@@ -167,31 +167,31 @@ background-color: rgb(255, 255, 127);</string>
 background-color: rgb(255, 255, 127);</string>
     </property>
     <property name="text">
-     <string>左转</string>
+     <string>电机1关</string>
     </property>
    </widget>
    <widget class="QPushButton" name="rightButton">
     <property name="geometry">
      <rect>
-      <x>1150</x>
-      <y>840</y>
+      <x>680</x>
+      <y>740</y>
       <width>231</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 75 22pt &quot;Microsoft YaHei UI&quot;;
-background-color: rgb(255, 255, 127);</string>
+background-color: rgb(0, 170, 0);</string>
     </property>
     <property name="text">
-     <string>右转</string>
+     <string>电机2开</string>
     </property>
    </widget>
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>940</y>
+      <x>680</x>
+      <y>880</y>
       <width>231</width>
       <height>81</height>
      </rect>
@@ -201,7 +201,101 @@ background-color: rgb(255, 255, 127);</string>
 background-color: rgb(255, 255, 127);</string>
     </property>
     <property name="text">
-     <string>后退</string>
+     <string>电机2关</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="serialBox">
+    <property name="geometry">
+     <rect>
+      <x>1730</x>
+      <y>760</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="baudrateBox">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>760</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>9600</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>115200</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>840</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;Microsoft YaHei UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>连接电机</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>1740</x>
+      <y>840</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;Microsoft YaHei UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>断开连接</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>740</y>
+      <width>211</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 12pt &quot;Microsoft YaHei&quot;;</string>
+    </property>
+    <property name="text">
+     <string>电机1正反转切换</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>880</y>
+      <width>201</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 25 12pt &quot;Microsoft YaHei UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>电机2正反转切换</string>
     </property>
    </widget>
   </widget>
@@ -211,7 +305,7 @@ background-color: rgb(255, 255, 127);</string>
      <x>0</x>
      <y>0</y>
      <width>1958</width>
-     <height>34</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
