@@ -1,9 +1,3 @@
-[submodule "ros/src/thirdparty/cartographer"]
-	path = ros/src/thirdparty/cartographer
-	url = git@github.com:cartographer-project/cartographer.git
-[submodule "ros/src/thirdparty/cartographer_ros"]
-	path = ros/src/thirdparty/cartographer_ros
-	url = git@github.com:cartographer-project/cartographer_ros.git
 [submodule "ros/src/thirdparty/navigation2"]
 	path = ros/src/thirdparty/navigation2
 	url = git@github.com:ros-planning/navigation2.git
