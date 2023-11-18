@@ -25,6 +25,8 @@ git clone --recurse-submodules https://github.com/huigang39/stsbot.git
 apt install -y qtmultimedia5-dev \
                     libqt5serialport5-dev \
                     ros-humble-joint-state-publisher \
+                    ros-humble-bondcpp \
+                    ros-humble-test-msgs \
                     libabsl-dev \
                     libceres-dev \
                     liblua5.2-dev \
