@@ -24,6 +24,7 @@ git clone --recurse-submodules https://github.com/huigang39/stsbot.git
 ```shell
 sudo apt install -y qtmultimedia5-dev \
 libqt5serialport5-dev \
+ros-humble-joint-state-publisher
 ```
 
 ## 编译
