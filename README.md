@@ -22,16 +22,7 @@ git clone --recurse-submodules https://github.com/huigang39/stsbot.git
 ## 依赖
 
 ```shell
-apt install -y qtmultimedia5-dev \
-                    libqt5serialport5-dev \
-                    ros-humble-joint-state-publisher \
-                    ros-humble-bondcpp \
-                    ros-humble-test-msgs \
-                    libabsl-dev \
-                    libceres-dev \
-                    liblua5.2-dev \
-                    libcairo2-dev \
-                    
+rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble -y
 ```
 
 ## 编译
