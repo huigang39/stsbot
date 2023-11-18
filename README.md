@@ -19,12 +19,17 @@ sudo apt install ros-$ROS_DISTRO-cartographer*
 git clone --recurse-submodules https://github.com/huigang39/stsbot.git
 ```
 
-## depends
+## 依赖
 
 ```shell
-sudo apt install -y qtmultimedia5-dev \
-libqt5serialport5-dev \
-ros-humble-joint-state-publisher
+apt install -y qtmultimedia5-dev \
+                    libqt5serialport5-dev \
+                    ros-humble-joint-state-publisher \
+                    libabsl-dev \
+                    libceres-dev \
+                    liblua5.2-dev \
+                    libcairo2-dev \
+                    
 ```
 
 ## 编译
@@ -33,4 +38,16 @@ ros-humble-joint-state-publisher
 
 ```shell
 colcon build
+```
+
+如果编译过程中遇到如下警告：
+```shell
+SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+```
+
+需要降低 `setuptools` 版本：
+```shell
+pip install setuptools==58.2.0
 ```
