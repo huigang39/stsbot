@@ -23,7 +23,7 @@ def generate_launch_description():
         'configuration_directory', default=os.path.join(pkg_share, 'config'))
     # 配置文件
     configuration_basename = LaunchConfiguration(
-        'configuration_basename', default='stsbot_2d.lua')
+        'configuration_basename', default='stsbot_laser_2d.lua')
 
     # =====================声明三个节点，cartographer/occupancy_grid_node/rviz_node=================================
     cartographer_node = Node(
