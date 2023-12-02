@@ -1,4 +1,4 @@
-# STS 机器人下位机 ESP32
+# EAIBOT 下位机
 
 左轮电机
 PIN 6
