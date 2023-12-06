@@ -13,7 +13,7 @@
 
 #include <stdint.h>
 
-namespace stsbot
+namespace eaibot
 {
     class Motor
     {

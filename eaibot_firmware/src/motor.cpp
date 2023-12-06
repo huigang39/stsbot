@@ -12,7 +12,7 @@
 #include "Arduino.h"
 #include "motor.h"
 
-namespace stsbot
+namespace eaibot
 {
     void Motor::setState(bool enabled)
     {

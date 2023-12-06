@@ -11,7 +11,7 @@
 
 #include "pcint.h"
 
-static stsbot::PCInt::InterruptCallback g_callbacks[3] = {nullptr};
+static eaibot::PCInt::InterruptCallback g_callbacks[3] = {nullptr};
 
 ISR(PCINT0_vect)
 {
@@ -37,7 +37,7 @@ ISR(PCINT2_vect)
     }
 }
 
-namespace stsbot
+namespace eaibot
 {
     constexpr volatile uint8_t *PCInt::kPortToPCMask[];
 

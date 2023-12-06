@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include "pcint.h"
 
-namespace stsbot
+namespace eaibot
 {
     class Encoder
     {

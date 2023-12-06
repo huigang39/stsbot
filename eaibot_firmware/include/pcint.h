@@ -13,7 +13,7 @@
 
 #include "Arduino.h"
 
-namespace stsbot
+namespace eaibot
 {
     class PCInt
     {
