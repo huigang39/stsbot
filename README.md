@@ -22,8 +22,8 @@ git clone --recurse-submodules https://github.com/huigang39/stsbot.git
 ## 依赖
 
 ```shell
-apt install qtmultimedia5-dev libqt5serialport5-dev
-rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble -y
+sudo apt install qtmultimedia5-dev libqt5serialport5-dev
+rosdep install --from-paths src --ignore-src -i -y
 ```
 
 ## 编译
