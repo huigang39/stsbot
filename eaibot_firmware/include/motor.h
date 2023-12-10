@@ -18,18 +18,18 @@ namespace eaibot
     class Motor
     {
     private:
-        uint8_t enableGpioPin;
-        uint8_t forwardGpioPin;
-        uint8_t backwardGpioPin;
+        uint8_t enableGpioPin_;
+        uint8_t forwardGpioPin_;
+        uint8_t backwardGpioPin_;
 
         static constexpr uint8_t kMinSpeed = 0;
         static constexpr uint8_t kMaxSpeed = 255;
 
     public:
         Motor(int enable_gpio_pin, int forward_gpio_pin, int backward_gpio_pin)
-            : enableGpioPin(enable_gpio_pin),
-              forwardGpioPin(forward_gpio_pin),
-              backwardGpioPin(backward_gpio_pin) {}
+            : enableGpioPin_(enable_gpio_pin),
+              forwardGpioPin_(forward_gpio_pin),
+              backwardGpioPin_(backward_gpio_pin) {}
 
         void setState(bool enabled);
         void setSpeed(uint16_t speed);

@@ -19,28 +19,28 @@ namespace eaibot
     class Encoder
     {
     public:
-        Encoder(uint8_t pinA, uint8_t pinB) : pinA(pinA), pinB(pinB){};
+        Encoder(uint8_t pinA, uint8_t pinB) : pinA_(pinA), pinB_(pinB){};
         void init();
         int32_t read();
         void reset();
 
     private:
-        static constexpr int8_t kTicksDelta[] = {0, 1, -1, 0, -1, 0, 0, 1, 1, 0, 0, -1, 0, -1, 1, 0};
-        static constexpr uint8_t kInstancesMax = 2;
-        static const PCInt::InterruptCallback kCallbacks[kInstancesMax];
+        static constexpr int8_t kTicksDelta_[] = {0, 1, -1, 0, -1, 0, 0, 1, 1, 0, 0, -1, 0, -1, 1, 0};
+        static constexpr uint8_t kInstancesMax_ = 2;
+        static const PCInt::InterruptCallback kCallbacks_[kInstancesMax_];
 
         static void callback0();
         static void callback1();
 
         void callback();
 
-        static Encoder *instances[kInstancesMax];
-        static int instanceCount;
+        static Encoder *instances_[kInstancesMax_];
+        static int instanceCount_;
 
-        uint8_t pinA;
-        uint8_t pinB;
+        uint8_t pinA_;
+        uint8_t pinB_;
 
-        uint8_t state = {0x00};
-        volatile int32_t count = {0L};
+        uint8_t state_ = {0x00};
+        volatile int32_t count_ = {0L};
     };
 }

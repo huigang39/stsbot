@@ -14,22 +14,58 @@
 
 namespace eaibot
 {
-    constexpr int8_t Encoder::kTicksDelta[];
+    constexpr int8_t Encoder::kTicksDelta_[];
 
-    Encoder *Encoder::instances[kInstancesMax] = {nullptr, nullptr};
+    Encoder *Encoder::instances_[kInstancesMax_] = {nullptr, nullptr};
+
+    int32_t Encoder::instanceCount_ = 0;
+
     void Encoder::callback0()
     {
-        if (Encoder::instances[0] != nullptr)
+        if (Encoder::instances_[0] != nullptr)
         {
-            Encoder::instances[0]->callback();
+            Encoder::instances_[0]->callback();
         }
     }
 
     void Encoder::callback1()
     {
-        if (Encoder::instances[1] != nullptr)
+        if (Encoder::instances_[1] != nullptr)
         {
-            Encoder::instances[1]->callback();
+            Encoder::instances_[1]->callback();
         }
+    }
+
+    void Encoder::init()
+    {
+        if (instanceCount_ == kInstancesMax_)
+        {
+            return;
+        }
+        pinMode(pinA_, INPUT_PULLUP);
+        pinMode(pinB_, INPUT_PULLUP);
+
+        eaibot::PCInt::attachInterrupt(pinA_, kCallbacks_[instanceCount_]);
+        eaibot::PCInt::attachInterrupt(pinB_, kCallbacks_[instanceCount_]);
+
+        instances_[instanceCount_] = this;
+        instanceCount_++;
+    }
+
+    int32_t Encoder::read()
+    {
+        return count_;
+    }
+
+    void Encoder::reset()
+    {
+        count_ = 0;
+    }
+
+    void Encoder::callback()
+    {
+        state_ <<= 2;
+        state_ |= (digitalRead(pinA_) << 1) | digitalRead(pinB_);
+        count_ += kTicksDelta_[state_ & 0x0f];
     }
 }

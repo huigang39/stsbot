@@ -39,7 +39,7 @@ ISR(PCINT2_vect)
 
 namespace eaibot
 {
-    constexpr volatile uint8_t *PCInt::kPortToPCMask[];
+    constexpr volatile uint8_t *PCInt::kPortToPCMask_[];
 
     void PCInt::attachInterrupt(uint8_t pin, InterruptCallback callback)
     {
@@ -53,7 +53,7 @@ namespace eaibot
 
         port -= 2;
 
-        *kPortToPCMask[port] |= bit_mask;
+        *kPortToPCMask_[port] |= bit_mask;
 
         PCICR |= (1 << port);
 

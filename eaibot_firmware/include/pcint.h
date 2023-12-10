@@ -18,7 +18,7 @@ namespace eaibot
     class PCInt
     {
     private:
-        static constexpr volatile uint8_t *kPortToPCMask[] = {&PCMSK0, &PCMSK1, &PCMSK2};
+        static constexpr volatile uint8_t *kPortToPCMask_[] = {&PCMSK0, &PCMSK1, &PCMSK2};
 
     public:
         typedef void (*InterruptCallback)();

@@ -18,11 +18,11 @@ namespace eaibot
     {
         if (enabled)
         {
-            digitalWrite(enableGpioPin, HIGH);
+            digitalWrite(enableGpioPin_, HIGH);
         }
         else
         {
-            digitalWrite(enableGpioPin, LOW);
+            digitalWrite(enableGpioPin_, LOW);
         }
     }
 
@@ -42,13 +42,13 @@ namespace eaibot
 
         if (forward)
         {
-            analogWrite(forwardGpioPin, speed);
-            analogWrite(backwardGpioPin, 0);
+            analogWrite(forwardGpioPin_, speed);
+            analogWrite(backwardGpioPin_, 0);
         }
         else
         {
-            analogWrite(forwardGpioPin, 0);
-            analogWrite(backwardGpioPin, speed);
+            analogWrite(forwardGpioPin_, 0);
+            analogWrite(backwardGpioPin_, speed);
         }
     }
 }
