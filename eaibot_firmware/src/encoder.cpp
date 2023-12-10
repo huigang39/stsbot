@@ -16,7 +16,7 @@ namespace eaibot
 {
     constexpr int8_t Encoder::kTicksDelta_[];
 
-    Encoder *Encoder::instances_[kInstancesMax_] = {nullptr, nullptr};
+    Encoder *Encoder::instances_[kInstancesMax_]{nullptr, nullptr};
 
     int32_t Encoder::instanceCount_ = 0;
 
