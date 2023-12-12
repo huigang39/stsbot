@@ -16,6 +16,8 @@ namespace eaibot
 {
     constexpr int8_t Encoder::kTicksDelta_[];
 
+    const PCInt::InterruptCallback Encoder::kCallbacks_[kInstancesMax_] = {callback0, callback1};
+
     Encoder *Encoder::instances_[kInstancesMax_]{nullptr, nullptr};
 
     int32_t Encoder::instanceCount_ = 0;

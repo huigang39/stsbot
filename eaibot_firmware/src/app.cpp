@@ -20,7 +20,7 @@
 #include "commands.h"
 
 uint32_t nextPID = eaibot::Constants::kPidPeriod;
-int32_t lastMotorCommand = eaibot::Constants::kAutoStopWindow;
+uint32_t lastMotorCommand = eaibot::Constants::kAutoStopWindow;
 
 int8_t arg = 0;
 int8_t index = 0;
@@ -126,7 +126,7 @@ namespace eaibot
             nextPID += Constants::kPidPeriod;
         }
 
-        if ((millis() > lastMotorCommand) > Constants::kAutoStopWindow)
+        if ((millis() - lastMotorCommand) > Constants::kAutoStopWindow)
         {
             leftMotor_.setSpeed(0);
             rightMotor_.setSpeed(0);
@@ -181,7 +181,7 @@ namespace eaibot
                 digitalWrite(arg1, LOW);
                 Serial.println("OK");
             }
-            else if (arg2 = 1)
+            else if (arg2 == 1)
             {
                 digitalWrite(arg1, HIGH);
                 Serial.println("OK");

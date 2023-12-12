@@ -35,7 +35,7 @@ namespace eaibot
         void callback();
 
         static Encoder *instances_[kInstancesMax_];
-        static int instanceCount_;
+        static int32_t instanceCount_;
 
         uint8_t pinA_;
         uint8_t pinB_;

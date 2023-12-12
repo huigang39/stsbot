@@ -17,15 +17,15 @@ namespace eaibot
 {
     struct Constants
     {
-        static constexpr int32_t kBaudRate{57600};
-        static constexpr int32_t kAutoStopWindow{3000};
-        static constexpr int8_t kPwmMin{0};
-        static constexpr int8_t kPwmMax{255};
-        static constexpr int8_t kPidRate{30};
+        static constexpr uint32_t kBaudRate{57600};
+        static constexpr uint32_t kAutoStopWindow{3000};
+        static constexpr uint8_t kPwmMin{0};
+        static constexpr uint8_t kPwmMax{255};
+        static constexpr uint8_t kPidRate{30};
         static constexpr double kPidPeriod{1000 / kPidRate};
-        static constexpr int8_t kPidKp{0.5};
-        static constexpr int8_t kPidKi{0.5};
-        static constexpr int8_t kPidKd{0.5};
-        static constexpr int8_t kPidKo{0.5};
+        static constexpr uint8_t kPidKp{30};
+        static constexpr uint8_t kPidKi{0};
+        static constexpr uint8_t kPidKd{10};
+        static constexpr uint8_t kPidKo{10};
     };
 }
