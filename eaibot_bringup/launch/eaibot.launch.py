@@ -65,7 +65,7 @@ def generate_launch_description():
                 condition=IfCondition(camera)
     )
 
-    # TODO))(francocipollone): Improve concatenation of launch files.
+    # TODO(francocipollone): Improve concatenation of launch files.
     #
     # Waits for eaibot_description to set up robot_state_publisher.
     eaibot_control_timer = TimerAction(period=5.0, actions=[include_eaibot_control])

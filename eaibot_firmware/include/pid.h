@@ -3,7 +3,7 @@
  * @author Huigang Wang (huigang39@outlook.com)
  * @brief
  * @version 0.1
- * @date 2023-12-08
+ * @date 2023-12-19
  *
  * @copyright Copyright (c) 2023
  *
@@ -11,32 +11,87 @@
 
 #pragma once
 
-#include <stdint.h>
-
 namespace eaibot
 {
-    class PID
-    {
-    private:
-        uint8_t kp_;
-        uint8_t ki_;
-        uint8_t kd_;
-        uint8_t ko_;
-        uint8_t outputMin_;
-        uint8_t outputMax_;
-        bool enabled_ = false;
-        uint8_t setpoint_ = 0;
-        uint8_t intergralTerm_ = 0;
-        uint32_t lastEncoderCount_ = 0;
-        uint8_t lastInput_ = 0;
-        uint32_t lastOutput_ = 0;
 
-    public:
-        PID(uint8_t kp, uint8_t ki, uint8_t kd, uint8_t ko, uint8_t outputMin, uint8_t outputMax) : kp_(kp), ki_(ki), kd_(kd), ko_(ko), outputMin_(outputMin), outputMax_(outputMax) {}
-        void enable(bool enabled);
-        void reset(int32_t encoderCount);
-        void compute(int32_t encoderCount, int32_t &computedOutput);
-        void setSetpoint(uint8_t setpoint);
-        void setTunings(uint8_t kp, uint8_t ki, uint8_t kd, uint8_t ko);
-    };
-}
+  /// @brief This class provides a simple PID controller implementation.
+  class PID
+  {
+  public:
+    /// @brief Constructs a new PID object.
+    ///
+    /// @param kp Tuning proportional gain.
+    /// @param kd Tuning derivative gain.
+    /// @param ki Tuning integral gain.
+    /// @param ko Tuning output gain.
+    /// @param output_min Output minimum limit.
+    /// @param output_max Output maximum limit.
+    PID(int kp, int kd, int ki, int ko, int output_min, int output_max)
+        : kp_(kp),
+          kd_(kd),
+          ki_(ki),
+          ko_(ko),
+          output_min_(output_min),
+          output_max_(output_max),
+          enabled_(false) {}
+
+    /// @brief Resets the PID controller.
+    ///
+    /// @param encoder_count Current encoder value.
+    void reset(int encoder_count);
+
+    /// @brief Enables the PID controller.
+    ///
+    /// @param enabled True to enable the PID, false otherwise.
+    void enable(bool enabled);
+
+    /// @brief Computes a new output.
+    ///
+    /// @param encoder_count Current encoder value.
+    /// @param computed_output Computed output value.
+    void compute(int encoder_count, int &computed_output);
+
+    /// @brief Sets the setpoint.
+    ///
+    /// @param setpoint Desired setpoint value.
+    void set_setpoint(int setpoint);
+
+    /// @brief Sets the tuning gains.
+    ///
+    /// @param kp Tuning proportional gain.
+    /// @param kd Tuning derivative gain.
+    /// @param ki Tuning integral gain.
+    /// @param ko Tuning output gain.
+    void set_tunings(int kp, int kd, int ki, int ko);
+
+  private:
+    /// Tuning proportional gain.
+    int kp_;
+    /// Tuning derivative gain.
+    int kd_;
+    /// Tuning integral gain.
+    int ki_;
+    /// Tuning output gain.
+    int ko_;
+
+    /// Output minimum limit.
+    int output_min_;
+    /// Output maximum limit.
+    int output_max_;
+
+    /// True if the PID is enabled, false otherwise.
+    bool enabled_;
+
+    /// Setpoint value.
+    int setpoint_;
+    /// Accumulated integral term.
+    int integral_term_;
+    /// Last received encoder value.
+    long last_encoder_count_;
+    /// Last computed input value.
+    int last_input_;
+    /// Last computed output value.
+    long last_output_;
+  };
+
+} // namespace eaibot

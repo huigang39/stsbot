@@ -3,7 +3,7 @@
  * @author Huigang Wang (huigang39@outlook.com)
  * @brief
  * @version 0.1
- * @date 2023-12-08
+ * @date 2023-12-19
  *
  * @copyright Copyright (c) 2023
  *
@@ -11,66 +11,76 @@
 
 #include "pid.h"
 
-void eaibot::PID::enable(bool enabled)
+namespace eaibot
 {
-    enabled_ = enabled;
-}
 
-void eaibot::PID::reset(int32_t encoderCount)
-{
+  // Note: see the following links for more information regarding this class implementation:
+  //  - http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-initialization/
+  //  - http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-derivative-kick/
+  //  - http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-tuning-changes/
+
+  void PID::reset(int encoder_count)
+  {
+    // Since we can assume that the PID is only turned on when going from stop to moving, we can init
+    // everything on zero.
     setpoint_ = 0;
-    intergralTerm_ = 0;
-    lastEncoderCount_ = encoderCount;
-    lastInput_ = 0;
-    lastOutput_ = 0;
-}
+    integral_term_ = 0;
+    last_encoder_count_ = encoder_count;
+    last_input_ = 0;
+    last_output_ = 0;
+  }
 
-void eaibot::PID::compute(int32_t encoderCount, int32_t &computedOutput)
-{
+  void PID::enable(bool enabled) { enabled_ = enabled; }
+
+  void PID::compute(int encoder_count, int &computed_output)
+  {
     if (!enabled_)
     {
-        if (lastInput_ != 0)
-        {
-            reset(encoderCount);
-        }
-        return;
+      // Reset PID once to prevent startup spikes.
+      if (last_input_ != 0)
+      {
+        reset(encoder_count);
+      }
+      return;
     }
 
-    int32_t input = encoderCount - lastEncoderCount_;
-    int32_t error = setpoint_ - input;
-    int32_t output = (kp_ * error - kd_ * (input - lastInput_) + intergralTerm_) / ko_;
+    int input = encoder_count - last_encoder_count_;
+    long error = setpoint_ - input;
 
-    output += lastOutput_;
+    long output = (kp_ * error - kd_ * (input - last_input_) + integral_term_) / ko_;
+    output += last_output_;
 
-    if (output >= outputMax_)
+    // Accumulate integral term as long as output doesn't saturate.
+    if (output >= output_max_)
     {
-        output = outputMax_;
+      output = output_max_;
     }
-    else if (output <= outputMin_)
+    else if (output <= output_min_)
     {
-        output = outputMin_;
+      output = output_min_;
     }
     else
     {
-        intergralTerm_ += ki_ * error;
+      integral_term_ += ki_ * error;
     }
 
-    computedOutput = output;
+    // Set the computed output accordingly.
+    computed_output = output;
 
-    lastEncoderCount_ = encoderCount;
-    lastInput_ = input;
-    lastOutput_ = output;
-}
+    // Store obtained values.
+    last_encoder_count_ = encoder_count;
+    last_input_ = input;
+    last_output_ = output;
+  }
 
-void eaibot::PID::setSetpoint(uint8_t setpoint)
-{
-    setpoint_ = setpoint;
-}
+  void PID::set_setpoint(int setpoint) { setpoint_ = setpoint; }
 
-void eaibot::PID::setTunings(uint8_t kp, uint8_t ki, uint8_t kd, uint8_t ko)
-{
+  void PID::set_tunings(int kp, int kd, int ki, int ko)
+  {
     kp_ = kp;
-    ki_ = ki;
     kd_ = kd;
+    ki_ = ki;
     ko_ = ko;
-}
+  }
+
+} // namespace eaibot

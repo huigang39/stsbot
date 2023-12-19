@@ -3,7 +3,7 @@
  * @author Huigang Wang (huigang39@outlook.com)
  * @brief
  * @version 0.1
- * @date 2023-12-09
+ * @date 2023-12-19
  *
  * @copyright Copyright (c) 2023
  *
@@ -11,21 +11,37 @@
 
 #pragma once
 
-#include <stdint.h>
-
 namespace eaibot
 {
-    struct Constants
-    {
-        static constexpr uint32_t kBaudRate{57600};
-        static constexpr uint32_t kAutoStopWindow{3000};
-        static constexpr uint8_t kPwmMin{0};
-        static constexpr uint8_t kPwmMax{255};
-        static constexpr uint8_t kPidRate{30};
-        static constexpr double kPidPeriod{1000 / kPidRate};
-        static constexpr uint8_t kPidKp{30};
-        static constexpr uint8_t kPidKi{0};
-        static constexpr uint8_t kPidKd{10};
-        static constexpr uint8_t kPidKo{10};
-    };
-}
+
+  /// @brief Common constants.
+  struct Constants
+  {
+    /// @brief Serial port baud rate.
+    static constexpr long kBaudrate{57600};
+
+    /// @brief Time window to automatically stop the robot if no command has been received [ms].
+    static constexpr long kAutoStopWindow{3000};
+
+    /// @brief Minimum PWM wave duty cycle (0%) (see
+    /// https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/).
+    static constexpr int kPwmMin{0};
+    /// @brief Maximum PWM wave duty cycle (100%) (see
+    /// https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/).
+    static constexpr int kPwmMax{255};
+
+    /// @brief PID computation rate [Hz].
+    static constexpr int kPidRate{30};
+    /// @brief PID computation period [ms].
+    static constexpr double kPidPeriod{1000 / kPidRate};
+    /// @brief PID default tuning proportional gain.
+    static constexpr int kPidKp{30};
+    /// @brief PID default tuning derivative gain.
+    static constexpr int kPidKd{10};
+    /// @brief PID default tuning integral gain.
+    static constexpr int kPidKi{0};
+    /// @brief PID default tuning output gain.
+    static constexpr int kPidKo{10};
+  };
+
+} // namespace eaibot
