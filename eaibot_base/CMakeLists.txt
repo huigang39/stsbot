@@ -5,25 +5,33 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(hardware_interface REQUIRED)
-find_package(libgflags-dev REQUIRED)
-find_package(libserial-dev REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
 find_package(pluginlib REQUIRED)
 
+# libserial:
+# Following linking instructions from: https://github.com/crayzeewulf/libserial/blob/master/examples/example_project/CMakeLists.txt
+set(THREADS_HAVE_PTHREAD_ARG 1)
+find_package(Threads REQUIRED)
+
+# Include libserial for serial communication
+# Typical find_package() does not work for libserial, for reference see:
+# https://github.com/crayzeewulf/libserial/issues/113#issuecomment-432245159
+find_package(PkgConfig)
+pkg_check_modules(SERIAL libserial)
+
+include(CMakePackageConfigHelpers)
+
+add_subdirectory(src)
+add_subdirectory(demo)
+
 if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
+  find_package(ament_cmake_clang_format REQUIRED)
+  ament_clang_format(CONFIG_FILE ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
 endif()
+
+# Export library so pluginlib can find it.
+pluginlib_export_plugin_description_file(hardware_interface eaibot_hw.xml)
 
 ament_package()

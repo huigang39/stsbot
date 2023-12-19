@@ -1,24 +1,22 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>eaibot_base</name>
+  <name>eaibot_navigation</name>
   <version>0.1.0</version>
-  <description>Motor control</description>
+  <description> Bring up nav2 package with eaibot. </description>
   <maintainer email="huigang39@outlook.com">Huigang Wang</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <buildtool_depend>pkg-config</buildtool_depend>
 
-  <depend>hardware_interface</depend>
-  <depend>libgflags-dev</depend>
-  <depend>libserial-dev</depend>
-  <depend>rclcpp</depend>
-  <depend>rclcpp_lifecycle</depend>
-  <depend>pluginlib</depend>
+  <build_depend>launch_ros</build_depend>
 
-  <exec_depend>controller_manager</exec_depend>
-  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>eaibot_gz_classic</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>navigation2</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>turtlebot3_gazebo</exec_depend>
+  <exec_depend>rviz2</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
